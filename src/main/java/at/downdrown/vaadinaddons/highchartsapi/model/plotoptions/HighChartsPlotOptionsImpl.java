@@ -14,6 +14,7 @@ public class HighChartsPlotOptionsImpl implements HighChartsPlotOptions {
     private boolean dataLabelsEnabled = true;
     private String dataLabelsFont = "Trebuchet MS";
     private String dataLabelFontWeight = "thin";
+    private String dataLabelFormat;
     private DashStyle dashStyle = DashStyle.Solid;
     private Color dataLabelsFontColor = Colors.DIMGRAY;
     private int dataLabelsFontSize = 15;
@@ -114,6 +115,26 @@ public class HighChartsPlotOptionsImpl implements HighChartsPlotOptions {
      */
     public void setDataLabelFontWeight(String dataLabelFontWeight) {
         this.dataLabelFontWeight = dataLabelFontWeight;
+    }
+    
+    /**
+     * <ul><li>{percentage} Stacked series and pies only. The point's percentage of the
+     * total. </li>
+     * <li>{point} The point object. The point name, if defined, is available
+     * through point.name. </li>
+     * <li>{series}: The series object. The series name is
+     * available through series.name. </li>
+     * <li>{total} Stacked series only. The
+     * total value at this point's x value. </li>
+     * <li>{x}: The x value.</li>
+     * <li>{y}: The y value.</li></ul>
+     */
+    public void setDataLabelFormat(String dataLabelFormat) {
+	this.dataLabelFormat = dataLabelFormat;
+    }
+    
+    public String getDataLabelFormat() {
+	return dataLabelFormat;
     }
 
     /**
@@ -263,6 +284,9 @@ public class HighChartsPlotOptionsImpl implements HighChartsPlotOptions {
         builder.append(", shadow: " + shadow);
         builder.append(", dataLabels: { ");
         builder.append("enabled: " + dataLabelsEnabled);
+        if (dataLabelFormat!=null)
+            builder.append(", format: '" + dataLabelFormat + "'");
+        builder.append(", format: '" + "{point.name}: <b>{y}</b>" + "'");
         builder.append(", color: '" + dataLabelsFontColor.getCSS() + "'");
         builder.append(", style: { ");
         builder.append("fontFamily: '" + dataLabelsFont + "'");
