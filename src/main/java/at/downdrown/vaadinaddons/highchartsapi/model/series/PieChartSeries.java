@@ -15,6 +15,7 @@ public class PieChartSeries extends HighChartsSeriesImpl {
 
     private List<PieChartData> data = new ArrayList<PieChartData>();
     private String innerSize;
+    private Float borderWidth;
 
     public PieChartSeries(String name) {
         this.chartType = ChartType.PIE;
@@ -34,6 +35,16 @@ public class PieChartSeries extends HighChartsSeriesImpl {
      */
     public void setInnerSize(String innerSize) {
 	this.innerSize = innerSize;
+    }
+    
+    /**
+     * The width of the border surrounding each slice. When setting the border
+     * width to 0, there may be small gaps between the slices due to SVG
+     * antialiasing artefacts. To work around this, keep the border width at 0.5
+     * or 1, but set the borderColor to null instead. Defaults to 1.
+     */
+    public void setBorderWidth(Float borderWidth) {
+    	this.borderWidth = borderWidth;
     }
 
     public String getHighChartValue() {
@@ -59,6 +70,10 @@ public class PieChartSeries extends HighChartsSeriesImpl {
         if (this.innerSize!=null) {
             builder.append(", innerSize: '" + this.innerSize + "'");
         }
+        
+        if (this.borderWidth != null) {
+		builder.append(", borderWidth: " + this.borderWidth);
+	}
         
         builder.append("}");
 
