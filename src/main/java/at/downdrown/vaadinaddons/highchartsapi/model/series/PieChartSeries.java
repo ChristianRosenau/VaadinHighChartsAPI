@@ -14,6 +14,7 @@ import java.util.List;
 public class PieChartSeries extends HighChartsSeriesImpl {
 
     private List<PieChartData> data = new ArrayList<PieChartData>();
+    private String innerSize;
 
     public PieChartSeries(String name) {
         this.chartType = ChartType.PIE;
@@ -26,6 +27,13 @@ public class PieChartSeries extends HighChartsSeriesImpl {
 
     public void setData(List<PieChartData> data) {
         this.data = data;
+    }
+    
+    /**
+     * The size of the inner diameter for the pie. A size greater than 0 renders a donut chart. Can be a percentage or pixel value. Percentages are relative to the pie size. Pixel values are given as integers.
+     */
+    public void setInnerSize(String innerSize) {
+	this.innerSize = innerSize;
     }
 
     public String getHighChartValue() {
@@ -46,8 +54,12 @@ public class PieChartSeries extends HighChartsSeriesImpl {
                 count++;
             }
         }
-
         builder.append("]");
+        
+        if (this.innerSize!=null) {
+            builder.append(", innerSize: '" + this.innerSize + "'");
+        }
+        
         builder.append("}");
 
         return builder.toString();
