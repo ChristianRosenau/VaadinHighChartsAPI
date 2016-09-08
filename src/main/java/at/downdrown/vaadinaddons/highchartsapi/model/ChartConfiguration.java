@@ -20,6 +20,7 @@ public class ChartConfiguration {
 
     private ChartType chartType = null;
     private Color backgroundColor = null;
+    private String globalFont = null;
     private String title = null;
     private Color titleFontColor = Colors.DIMGRAY;
     private String titleFont = "Trebuchet MS";
@@ -78,6 +79,14 @@ public class ChartConfiguration {
 
     public Color getBackgroundColor() {
         return backgroundColor;
+    }
+    
+    public void setGlobalFont(String globalFont) {
+	this.globalFont = globalFont;
+    }
+    
+    public String getGlobalFont() {
+	return globalFont;
     }
 
     /**
@@ -335,6 +344,9 @@ public class ChartConfiguration {
             builder.append(",backgroundColor: '" + getBackgroundColor().getCSS() + "'");
         } else {
             builder.append(",backgroundColor: 'transparent'");
+        }
+        if (getGlobalFont() != null) {
+            builder.append(",style: { fontFamily: '"+getGlobalFont()+"'}");
         }
         if (getChartMargin() != null) builder.append(getChartMargin().getHighChartValue());
 
