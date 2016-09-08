@@ -8,6 +8,8 @@ window.at_downdrown_vaadinaddons_highchartsapi_AbstractHighChart = function () {
         eval(hcjs);
 
         // set chart context
-        $('#' + domId).highcharts(options);
+        window.setTimeout(function() {
+        	$('#' + domId).highcharts(options);
+        },0);
     };
 };
