@@ -21,6 +21,7 @@ public class Axis {
     private boolean showFirstLabel = true;
     private boolean showLastLabel = true;
     private boolean labelsEnabled = true;
+    private String labelFormat = null;
     private boolean allowDecimals = true;
     private int tickLength = 1;
     private int gridLineWidth = 1;
@@ -186,6 +187,18 @@ public class Axis {
     public void setLabelsEnabled(boolean labelsEnabled) {
         this.labelsEnabled = labelsEnabled;
     }
+    
+    /**
+     * A format string for the axis label. Defaults to {value}.
+     * @param labelFormat
+     */
+    public void setLabelFormat(String labelFormat) {
+	this.labelFormat = labelFormat;
+    }
+    
+    public String getLabelFormat() {
+	return labelFormat;
+    }
 
     /**
      * Returns if decimals are allowed or not.
@@ -305,7 +318,7 @@ public class Axis {
         builder.append(", startOnTick: " + this.startOnTick);
 
         //Axis Labels
-        builder.append(", labels: { enabled: " + this.labelsEnabled + " }");
+        builder.append(", labels: { enabled: " + this.labelsEnabled + (this.labelFormat != null ? ", format: '" + this.labelFormat + "' " : "") + " }");
 
         //Close Tag
         builder.append("}");
