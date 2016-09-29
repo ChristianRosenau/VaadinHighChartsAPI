@@ -24,7 +24,8 @@ public class Axis {
     private boolean allowDecimals = true;
     private int tickLength = 1;
     private int gridLineWidth = 1;
-
+    private boolean startOnTick = false;
+    
     @Deprecated
     /**
      * Can cause an Exception if you forget to set an {@link at.downdrown.vaadinaddons.highchartsapi.model.Axis.AxisType}, use {@link #Axis(AxisType)} instead.
@@ -222,6 +223,19 @@ public class Axis {
     public int getGridLineWidth() {
         return gridLineWidth;
     }
+    
+    /**
+     * Whether to force the axis to start on a tick. Defaults to false.
+     * 
+     * @param startOnTick
+     */
+    public void setStartOnTick(boolean startOnTick) {
+	this.startOnTick = startOnTick;
+    }
+    
+    public boolean isStartOnTick() {
+	return startOnTick;
+    }
 
     /**
      * Set the chart's gridLineWidth.
@@ -286,6 +300,9 @@ public class Axis {
 
         //Show Last Label
         builder.append(", showLastLabel: " + this.showLastLabel);
+        
+        //startOnTick
+        builder.append(", startOnTick: " + this.startOnTick);
 
         //Axis Labels
         builder.append(", labels: { enabled: " + this.labelsEnabled + " }");
