@@ -6,6 +6,8 @@ package at.downdrown.vaadinaddons.highchartsapi;
 
 import at.downdrown.vaadinaddons.highchartsapi.exceptions.HighChartsException;
 import at.downdrown.vaadinaddons.highchartsapi.model.ChartConfiguration;
+import at.downdrown.vaadinaddons.highchartsapi.model.lang.AbstractLanguageOptions;
+
 import com.vaadin.ui.AbstractJavaScriptComponent;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.JavaScript;
@@ -23,7 +25,7 @@ public abstract class AbstractHighChart extends AbstractJavaScriptComponent {
     public AbstractHighChart() {
         setId(getDomId());
         getState().domId = getDomId();
-        getState().hcjs = "";
+        getState().hcjs = "";	
     }
 
     public static int nextChartId() {
@@ -101,4 +103,11 @@ public abstract class AbstractHighChart extends AbstractJavaScriptComponent {
         this.setChartoptions(configuration.getHighChartValue());
         JavaScript.getCurrent().execute("$(#" + this.getDomId() + ").redraw();");
     }
+    
+    public void setLanguageOptions(AbstractLanguageOptions options) {
+	String newLanguageOptions = options.getHighChartValue();
+	JavaScript.getCurrent().execute("Highcharts.setOptions({lang: " + newLanguageOptions + "});");
+    }
+    
+    
 }
