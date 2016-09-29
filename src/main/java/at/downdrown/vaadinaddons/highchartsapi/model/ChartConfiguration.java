@@ -32,6 +32,7 @@ public class ChartConfiguration {
     private boolean creditsEnabled = false;
     private boolean legendEnabled = true;
     private boolean tooltipEnabled = true;
+    private String tooltipXDateFormat = null;
     private boolean exportingEnabled = true;
     private Axis xAxis = new Axis(Axis.AxisType.xAxis);
     private Axis yAxis = new Axis(Axis.AxisType.yAxis);
@@ -123,6 +124,17 @@ public class ChartConfiguration {
 
     public boolean isTooltipEnabled() {
         return tooltipEnabled;
+    }
+    
+    /**
+     * The format for the date in the tooltip header if the X axis is a datetime axis. The default is a best guess based on the smallest distance between points in the chart.
+     * @param tooltipXDateFormat
+     */
+    public void setTooltipXDateFormat(String tooltipXDateFormat) {
+	this.tooltipXDateFormat = tooltipXDateFormat;
+    }
+    public String getTooltipXDateFormat() {
+	return tooltipXDateFormat;
     }
 
     /**
@@ -391,7 +403,7 @@ public class ChartConfiguration {
 
         builder.append(", credits: { enabled: " + isCreditsEnabled() + " }");
         builder.append(", legend: { enabled: " + isLegendEnabled() + " }");
-        builder.append(", tooltip: { enabled: " + isTooltipEnabled() + " }");
+        builder.append(", tooltip: { enabled: " + isTooltipEnabled() + (this.tooltipXDateFormat != null ? ", xDateFormat: '" + this.tooltipXDateFormat + "' " : "") + " }");
         builder.append(", exporting: { enabled: " + isExportingEnabled() + " }");
 
         if (!getSeriesList().isEmpty()) {
