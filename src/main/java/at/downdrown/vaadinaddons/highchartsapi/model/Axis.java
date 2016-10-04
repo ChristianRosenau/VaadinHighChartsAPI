@@ -26,6 +26,8 @@ public class Axis {
     private int tickLength = 1;
     private int gridLineWidth = 1;
     private boolean startOnTick = false;
+    private Double min;
+    private Double max;
     
     @Deprecated
     /**
@@ -249,6 +251,30 @@ public class Axis {
     public boolean isStartOnTick() {
 	return startOnTick;
     }
+    
+    /**
+     * The minimum value of the axis. If null the min value is automatically calculated. If the startOnTick option is true, the min value might be rounded down.
+     * @param min
+     */
+    public void setMin(Double min) {
+	this.min = min;
+    }
+    
+    public Double getMin() {
+	return min;
+    }
+    
+    /**
+     * The maximum value of the axis. If null, the max value is automatically calculated. If the endOnTick option is true, the max value might be rounded up.
+     * @param max
+     */
+    public void setMax(Double max) {
+	this.max = max;
+    }
+    
+    public Double getMax() {
+	return max;
+    }
 
     /**
      * Set the chart's gridLineWidth.
@@ -316,6 +342,12 @@ public class Axis {
         
         //startOnTick
         builder.append(", startOnTick: " + this.startOnTick);
+      
+        //min
+        if (getMin()!=null) builder.append(", min: " + min);
+        
+        //max
+        if (getMax()!=null) builder.append(", max: " + max);
 
         //Axis Labels
         builder.append(", labels: { enabled: " + this.labelsEnabled + (this.labelFormat != null ? ", format: '" + this.labelFormat + "' " : "") + " }");
