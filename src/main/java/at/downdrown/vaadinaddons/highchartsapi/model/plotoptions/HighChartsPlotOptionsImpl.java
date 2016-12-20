@@ -286,7 +286,6 @@ public class HighChartsPlotOptionsImpl implements HighChartsPlotOptions {
         builder.append("enabled: " + dataLabelsEnabled);
         if (dataLabelFormat!=null)
             builder.append(", format: '" + dataLabelFormat + "'");
-        builder.append(", format: '" + "{point.name}: <b>{y}</b>" + "'");
         builder.append(", color: '" + dataLabelsFontColor.getCSS() + "'");
         builder.append(", style: { ");
         builder.append("fontFamily: '" + dataLabelsFont + "'");
